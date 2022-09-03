@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% load App_extras %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="ui three doubling stackable link cards">
+    {% for show_user in List %}
+    <a class="ui fluid raised link card" href="{% url 'user_info' username=show_user.get_username %}">
+        <div class="content">
+            <img class="ui left floated tiny image" src="{{ show_user.Avatar.url }}" alt="{{ show_user.get_username }}">
+            <div class="header">{{ show_user.get_username }}</div>
+            <div class="meta">
+                {% translate "Last login" %}: {{ show_user.get_last_login}}
+            </div>
+            <div class="description">
+                {{ show_user.get_introduction }}
+            </div>
+        </div>
+        <div class="extra content">
+            <span class="right floated">
+                {% translate "Joined in" %} {{ show_user.get_join_date.date }}
+            </span>
+            <span>
+                <i class="file audio outline icon"></i>
+                {{ show_user.NumRecordings }} {% translate "Recordings" %}
+            </span>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

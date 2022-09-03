@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<div class="segment">
+    <a href="javascript:history.go(-1)" class="ui left labeled icon button">
+        <i class="left arrow icon"></i>
+        {% translate "Back" %}
+    </a>
+    <a href="{% url 'root' %}" class="ui left labeled icon button">
+        <i class="home icon"></i>
+        {% translate "Home" %}
+    </a>
+</div>

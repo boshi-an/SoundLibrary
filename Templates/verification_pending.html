@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load App_extras %}
+{% load static %}
+{% load i18n %}
+
+{% block page %}
+<div class="pusher">
+    <div class="ui container">
+        <div class="ui divider"></div>
+        {% include 'util_back.html' %}
+        {% csrf_token %}
+        <h1>
+            {% translate "Pending Verification" %}
+        </h1>
+        <p>
+            {{ Reason }}
+        </p>
+    </div>
+</div>
+
+{% endblock %}

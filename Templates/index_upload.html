@@ -1,0 +1,81 @@
+{% extends "index.html" %}
+
+{% load App_extras %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<form class="ui form" method="post" enctype="multipart/form-data" id="UploadForm">
+    {% csrf_token %}
+    <h3 class="ui dividing header">{% translate "Recording Information" %}</h3>
+    <div class="two fields">
+        <div class="field">
+            <label>{% translate "Recording Name" %}</label>
+            <div class="field">
+                <input type="text" name="RecordingName" placeholder="{% translate 'Recording Name' %}" required="required">
+            </div>
+        </div>
+        <div class="field">
+            <label>{% translate "Composer Name" %}</label>
+            <div class="ui input">
+                <input list="browsers" name="ComposerName" type="text" autocomplete="off">
+                <datalist id="browsers">
+                    {% for show_composer in AllComposers %}
+                    <option value="{{ show_composer.get_name }}"></option>
+                    {% endfor %}
+                </datalist>
+            </div>
+        </div>
+    </div>
+    <div class="field">
+        <label>{% translate "Description" %}</label>
+        <textarea type="input" name="Description" placeholder="{% translate 'Enter details here...' %}"></textarea>
+    </div>
+    <div class="field">
+        <label>{% translate "Recording File" %}</label>
+        <input type="file" name="File" required/>
+    </div>
+    {% if user.get_verification_status %}
+    <button class="massive ui primary button" onclick="upload();">
+        {% translate "Submit" %}
+    </button>
+    {% else %}
+    <button class="massive disabled ui primary button" type="submit">
+        {% translate "Submit" %}
+    </button>
+    <p>{% translate "A user can upload recordings if logged in and get email verified." %}</p>
+    {% endif %}
+    <p>
+        <div class="ui progress" id="percentage">
+            <div class="bar">
+                <div class="progress"></div>
+            </div>
+            <div class="label">Uploading Files</div>
+        </div>
+    </p>
+</form>
+
+<script>
+    document.getElementById("percentage").style.display = "none";
+    function on_progress(evt) {       //看这个函数之前先看upload函数。这个函数可以接收一个evt(event)对象(细节自行查询progress)，他有3个属性lengthComputable，loaded，total，第一个属性是个bool类型的，代表是否支持，第二个代表当前上传的大小，第三个为总的大小，由此便可以计算出实时上传的百分比
+        if(evt.lengthComputable) {
+            var ele = document.getElementById('2');
+            var percent = Math.round((evt.loaded) * 100 / evt.total);
+            $('#percentage').progress({
+                percent: percent
+            });
+        }
+    }
+    function upload() {
+        document.getElementById("percentage").style.display = "block";
+        var xhr = new XMLHttpRequest();
+        var form = document.getElementById('UploadForm');   //取得文件数据，而.file对象只是文件信息
+        var formData = new FormData(form);
+        xhr.upload.addEventListener('progress', on_progress, false);     //xhr对象含有一个upload对象，它有一个progress事件，在文件上传过程中会被不断触发，我们为这个事件对应一个处理函数，每当事件触发就会调用这个函数，于是便可利用这个函数来修改当前进度，更多细节可自行查询
+        xhr.open('POST', "{% url 'upload' %}", true);  //请将url改成上传url
+        xhr.setRequestHeader('X-CSRFTOKEN','{{ request.COOKIES.csrftoken }}');   //此处为Django要求，可无视，或者换成相应后台所要求的CSRF防护，不是django用户请去掉
+        xhr.send(formData);   //发送表单
+    }
+</script>
+
+{% endblock %}

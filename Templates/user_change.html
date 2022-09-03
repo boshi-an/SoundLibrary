@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% load App_extras %}
+{% load static %}
+{% load i18n %}
+
+{% block page %}
+<div class="pusher">
+    <div class="ui container">
+        <div class="ui divider"></div>
+        {% include 'util_back.html' %}
+        {% csrf_token %}
+        <h3 class="ui dividing header">{% translate "User Information" %}</h3>
+        <!-- When error occurs -->
+        {% if Inconsistency %}
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <div class="header">
+                {% translate "Passwords should be the same!" %}
+            </div>
+        </div>
+        {% elif UsedName %}
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <div class="header">
+                {% translate "Your name is conflict with others!" %}
+            </div>
+        </div>
+        {% elif ChangeFailed %}
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <div class="header">
+                {% translate "Registration failed due to some unkonwn reason!" %}
+            </div>
+        </div>
+        {% endif %}
+        <form class="ui form" id="change_form" method="post" enctype="multipart/form-data"
+            action="{% url 'user_info_change_commit' username=user.get_username %}">
+            {% csrf_token %}
+            <div class="two fields">
+                <div class="field">
+                    <div class="field">
+                        <label>{% translate "Avatar" %}</label>
+                        <div class="image">
+                            <img class="ui small image" src="{{ user.Avatar.url }}" alt="{{ user.get_username }}">
+                        </div>
+                        <input type="file" name="Avatar"/>
+                    </div>
+                    <div class="field">
+                        <label>{% translate "User Name" %}</label>
+                        <div class="field">
+                            <input type="text" name="UserName" value="{{ user.get_username }}" required="required">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>{% translate "Email" %}</label>
+                        <div class="field">
+                            <input type="text" name="Email" value="{{ user.get_email }}" required="required">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>{% translate "Password" %}</label>
+                        <div class="field">
+                            <input type="password" name="Password" placeholder="{% translate 'Password' %}">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>{% translate "Password Again" %}</label>
+                        <div class="field">
+                            <input type="password" name="Password2" placeholder="{% translate 'Password' %}">
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>{% translate "Introduction" %}</label>
+                    <div class="field">
+                        <textarea type="input" name="Introduction"
+                            required="required">{{ user.get_introduction }}</textarea>
+                    </div>
+                </div>
+            </div>
+            <button class="ui positive button" type="submit">{% translate "Update" %}</button>
+        </form>
+        <a href="{% url 'logout' %}" class="ui right labeled icon button">
+            <i class="user outline icon"></i>
+            {% translate "Logout" %}
+        </a>
+        <a class="ui red button" id="coins" name="delete_button">
+            {% translate "Delete User" %}
+        </a>
+        <div class="ui modal">
+            <i class="close icon"></i>
+            <div class="header">
+                {% translate "Delete User" %}
+            </div>
+            <div class="content">
+                <div class="description">
+                    <div class="ui header">{% translate "Please Confirm." %}</div>
+                    <p>{% translate "By clicking on the " %}{% translate "Yep, Delete" %}{% translate " button, current
+                        user will be permanently deleted and CANNOT be recovered." %}</p>
+                    <p>{% translate "If you registered with incorrect information, you can edit it in the user-info
+                        management page,
+                        it's not necessary to delete the user." %}</p>
+                    <p>{% translate "Are you sure to delete it?" %}</p>
+                </div>
+            </div>
+            <div class="actions">
+                <div class="ui black deny button">
+                    {% translate "Nope, Go Back" %}
+                </div>
+                <button class="ui positive red right labeled icon button">
+                    {% translate "Yep, Delete" %}
+                    <i class="checkmark icon"></i>
+                </button>
+            </div>
+        </div>
+        <script>
+            $('.ui.modal').modal('setting', {
+                closable: false,
+                onDeny: function () {
+                },
+                onApprove: function () {
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.name = "delete_button";
+                    let form = document.getElementById("change_form");
+                    form.appendChild(input);
+                    form.submit();
+                }
+            })
+            $('#coins').click(function () {
+                $('.ui.modal').modal('show');
+            });
+        </script>
+    </div>
+</div>
+
+<script>
+    $('.message .close')
+        .on('click', function () {
+            $(this)
+                .closest('.message')
+                .transition('fade')
+                ;
+        })
+        ;
+</script>
+{% endblock %}

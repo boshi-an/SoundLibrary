@@ -1,0 +1,32 @@
+{% extends "index.html" %}
+
+{% load App_extras %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="ui link cards">
+    {% for show_composer in AllComposers %}
+    <a class="ui raised link card" href="{% url 'composer_info' id=show_composer.get_id %}">
+        <div class="content">
+            <div class="header">{{ show_composer.get_name }}</div>
+            <div class="meta">
+                <span class="category"> Country: {{ show_composer.get_country }}</span>
+            </div>
+            <div class="description">
+                {{ show_composer.get_description }}
+            </div>
+        </div>
+        <div class="extra content">
+            <span class="right floated">
+                {{ show_composer.get_lifetime }}
+            </span>
+            <span>
+                <i class="file audio outline icon"></i>
+                {{ show_composer.NumRecordings }}
+            </span>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% load App_extras %}
+{% load static %}
+{% load i18n %}
+
+{% block page %}
+<div class="pusher">
+    <div class="ui container">
+        <div class="ui divider"></div>
+        {% include 'util_back.html' %}
+        {% csrf_token %}
+        <h3 class="ui dividing header">{% translate "User Information" %}</h3>
+        <div class="ui raised segment">
+            <div class="ui items">
+                {% for show_user in UserList %}
+                <div class="item">
+                    <div class="image">
+                        <img class="ui medium circular image" src="{{ show_user.user.Avatar.url }}" alt="{{ show_user.user.get_username }}">
+                    </div>
+                    <div class="content">
+                        <a class="header">{{ show_user.user.get_username }}</a>
+                        <div class="meta">
+                            <span>{% translate "Description" %} :</span>
+                        </div>
+                        <div class="description">
+                            <p>{{ show_user.user.get_introduction }}</p>
+                        </div>
+                        <div class="extra">
+                            {% translate "Joined on" %} {{ show_user.user.date_joined }}
+                            {% if user.get_username == show_user.user.get_username %}
+                            <div class="segment">
+                                <a href="{% url 'user_info_change' username=user.get_username %}" class="ui left floated left labeled icon button">
+                                    <i class="pencil alternate icon"></i>
+                                    {% translate "Change User Info" %}
+                                </a>
+                                {% if user.get_verification_status == False %}
+                                <a href="{% url 'verify_email' username=user.get_username %}" class="ui left floated left labeled icon button">
+                                    <i class="check square outline icon"></i>
+                                    {% translate "Verify Email" %}
+                                </a>
+                                {% endif %}
+                            </div>
+                            <a href="{% url 'logout' %}" class="ui right floated right labeled icon button">
+                                <i class="user outline icon"></i>
+                                {% translate "Logout" %}
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="ui horizontal divider">
+                    {{ show_user.recordings|length }}
+                    {% translate "Recordings" %}
+                </div>
+                <div class="ui three doubling stackable link cards">
+                    {% for show_recording in show_user.recordings %}
+                    <a class="ui fluid raised link card" href="{% url 'recording_info' id=show_recording.get_id %}">
+                        <div class="content">
+                            <div class="header">{{ show_recording.get_title }}</div>
+                            <div class="meta">
+                                {% translate "Uploaded by" %}: {{ show_recording.get_username }}
+                                </br>
+                                {% translate "Composer" %} : {{ show_recording.get_composer }}
+                            </div>
+                            <div class="description">
+                                {{ show_recording.get_description }}
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            {% translate "Uploaded at" %} {{ show_recording.get_upload_date }}
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.message .close')
+        .on('click', function () {
+            $(this)
+                .closest('.message')
+                .transition('fade')
+                ;
+        })
+        ;
+</script>
+{% endblock %}

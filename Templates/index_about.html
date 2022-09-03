@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+
+{% load App_extras %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<h2>{% translate "What is This Website" %}</h2>
+<p>
+    {% translate "This is a website maintained by Peking University Piano Club." %}
+    {% translate "We built this website based on the idea of enjoy, share, and remember." %}
+</p>
+<h2>{% translate "How to Use This Website" %}</h2>
+<p>
+    {% translate "Anyone can access all the recordings and club membser through this website." %}
+</br>
+    {% translate "If you are a student of Peking University, you can upload your own recordings after signed in and verified your email." %}
+</p>
+<h2>{% translate "Check Us Out!" %}</h2>
+<p>
+    {% translate "Public We-chat ID of PKU Piano Club: pianopku, here's our QR code:" %}
+    <img src="{% static '/images/logo/qrcode.bmp' %}" class="ui centered image">
+    {% translate "Or view our videos at Bilibili: " %}
+    <a class="item" href="https://space.bilibili.com/431443026/" target="_blank">
+        {% translate "CLICK HERE!" %} 
+    </a>
+</p>
+{% endblock %}

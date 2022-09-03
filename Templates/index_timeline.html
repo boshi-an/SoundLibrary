@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+
+{% load App_extras %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="ui three doubling stackable link cards">
+    {% for show_recording in List %}
+    <a class="ui fluid raised link card" href="{% url 'recording_info' id=show_recording.get_id %}">
+        <div class="content">
+            <div class="header">{{ show_recording.get_title }}</div>
+            <div class="meta">
+                {% translate "Uploaded by" %}: {{ show_recording.get_username }}
+                </br>
+                {% translate "Composer" %} : {{ show_recording.get_composer }}
+            </div>
+            <div class="description">
+                {{ show_recording.get_description }}
+            </div>
+        </div>
+        <div class="extra content">
+            {% translate "Uploaded at" %} {{ show_recording.get_upload_date }}
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% endblock %}

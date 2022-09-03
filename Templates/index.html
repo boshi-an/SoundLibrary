@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% load App_extras %}
+{% load static %}
+{% load i18n %}
+
+{% block page %}
+<div class="pusher">
+    <!-- Menu bar -->
+    <div class="ui inverted vertical masthead center aligned segment">
+        <div class="ui large inverted stackable tabs menu">
+            {% block menu %}
+            {% endblock %}
+            {% if SelectedTag == "timeline" %}
+            <a class="active item" href="{% url 'index' tag='timeline' page=0 %}">
+                {% translate "Timeline" %}
+            </a>
+            {% else %}
+            <a class="item" href="{% url 'index' tag='timeline' page=0 %}">
+                {% translate "Timeline" %}
+            </a>
+            {% endif %}
+            {% if SelectedTag == "members" %}
+            <a class="active item" href="{% url 'index' tag='members' page=0 %}">
+                {% translate "Members" %}
+            </a>
+            {% else %}
+            <a class="item" href="{% url 'index' tag='members' page=0 %}">
+                {% translate "Members" %}
+            </a>
+            {% endif %}
+            {% if SelectedTag == "composers" %}
+            <a class="active item" href="{% url 'index' tag='composers' page=0 %}">
+                {% translate "Composers" %}
+            </a>
+            {% else %}
+            <a class="item" href="{% url 'index' tag='composers' page=0 %}">
+                {% translate "Composers" %}
+            </a>
+            {% endif %}
+            {% if SelectedTag == "upload" %}
+            <a class="active item" href="{% url 'index' tag='upload' page=0 %}">
+                {% translate "Upload" %}
+            </a>
+            {% else %}
+            <a class="item" href="{% url 'index' tag='upload' page=0 %}">
+                {% translate "Upload" %}
+            </a>
+            {% endif %}
+            {% if SelectedTag == "about" %}
+            <a class="active item" href="{% url 'index' tag='about' page=0 %}">
+                {% translate "About" %}
+            </a>
+            {% else %}
+            <a class="item" href="{% url 'index' tag='about' page=0 %}">
+                {% translate "About" %}
+            </a>
+            {% endif %}
+            <div class="right menu">
+                <div class="item">
+                    <form class="ui action input" method="post" enctype="multipart/form-data" action="{% url 'index' tag='search' page=0 %}">
+                        {% csrf_token %}
+                        <input type="text" name="Keyword" placeholder="{% translate 'Anything' %}">
+                        <button class="ui inverted right labeled icon button" type="submit">
+                            <i class="search icon"></i>
+                            {% translate "Search" %}
+                        </button>
+                    </form>
+                </div>
+                <div class="item">
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'user_info' username=user.get_username %}"
+                        class="ui inverted right labeled icon button">
+                        <i class="user outline icon"></i>
+                        {{ user.get_username }}
+                    </a>
+                    {% else %}
+                    <a href="{% url 'login' %}" class="ui inverted button">
+                        <i class="user outline icon"></i>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Body -->
+
+    <div class="ui divider"></div>
+    <div class="ui container">
+
+        {% block content %}
+        {% endblock %}
+
+        <script>
+            $('.ui.dropdown').dropdown();
+        </script>
+    </div>
+
+    {% if HavePages %}
+        <!-- Page selection bar -->
+        <div class="ui divider"></div>
+        <div class="ui center aligned container">
+            <a class="button circular ui icon button" href="{{ " /index/"|addstr:SelectedTag|addstr:"/"|addstr:PrevPage|addstr:"/" }}">
+                <i class="angle left icon"></i>
+            </a>
+            {% for i in PageRange %}
+                {% if i == CurrentPage %}
+                <button class="circular orange ui icon button">
+                    {{ i|add:1 }}
+                </button>
+                {% else %}
+                <a class="button circular ui icon button" href="{{ " /index/"|addstr:SelectedTag|addstr:"/"|addstr:i|addstr:"/" }}">
+                    {{ i|add:1 }}
+                </a>
+                {% endif %}
+            {% endfor %}
+            <a class="button circular ui icon button" href="{{ " /index/"|addstr:SelectedTag|addstr:"/"|addstr:NextPage|addstr:"/" }}">
+                <i class="angle right icon"></i>
+            </a>
+        </div>
+        <div class="ui divider"></div>
+    {% endif %}
+</div>
+
+{% endblock %}

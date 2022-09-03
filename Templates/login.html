@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block page %}
+
+{% if user.is_authenticated %}
+<div class="pusher">
+    <h4>{% translate "Registration Success!" %}</h4>
+    {% include 'util_back.html' %}
+</div>
+{% else %}
+<div class="pusher">
+    <div class="ui container">
+        <div class="ui divider"></div>
+        <div class="segment">
+            <a href="{% url 'root' %}" class="ui left labeled icon button">
+                <i class="left arrow icon"></i>
+                {% translate "Back" %}
+            </a>
+        </div>
+        <!-- When error occurs -->
+        {% if register_nonconsistency %}
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <div class="header">
+                {% translate "Passwords should be the same!" %}
+            </div>
+        </div>
+        {% elif register_used_name %}
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <div class="header">
+                {% translate "Your name is conflict with others!" %}
+            </div>
+        </div>
+        {% elif register_non_pku %}
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <div class="header">
+                Please use pku emails (@pku.edu.cn or @stu.pku.edu.cn)!
+            </div>
+        </div>
+        {% elif register_failed %}
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <div class="header">
+                {% translate "Registration failed due to some unkonwn reason!" %}
+            </div>
+        </div>
+        {% elif login_failed %}
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <div class="header">
+                {% translate "Login failed!" %}
+            </div>
+        </div>
+        {% endif %}
+        <div class="ui placeholder segment">
+            <div class="ui two column stackable center aligned grid">
+                <div class="ui vertical divider">Or</div>
+                <div class="middle aligned row">
+                    <div class="column">
+                        <div class="ui icon header">
+                            {% translate "Login" %}
+                            <i class="User icon"></i>
+                        </div>
+                        <form class="ui form" method="post" enctype="multipart/form-data" action="{% url 'login_form' %}">
+                            {% csrf_token %}
+                            <div class="field">
+                                <label>{% translate "User Name" %}</label>
+                                <div class="field">
+                                    <input type="text" name="UserName" placeholder="{% translate 'User Name' %}" required="required">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>{% translate "Password" %}</label>
+                                <div class="field">
+                                    <input type="password" name="Password" placeholder="{% translate 'Password' %}" required="required">
+                                </div>
+                            </div>
+                            <button class="ui primary positive button" type="submit">{% translate "Login" %}</button>
+                        </form>
+                        <a href="/password_reset/" class="ui button" type="submit">{% translate "Forget?" %}</a>
+                    </div>
+                    <div class="column">
+                        <div class="ui icon header">
+                            {% translate "Register" %}
+                            <i class="world icon"></i>
+                        </div>
+                        <form class="ui form" method="post" enctype="multipart/form-data" action="{% url 'register_form' %}">
+                            {% csrf_token %}
+                            <div class="field">
+                                <label>{% translate "User Name" %}</label>
+                                <div class="field">
+                                    <input type="text" name="UserName" placeholder="{% translate 'User Name' %}" required="required">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>{% translate "Email" %}</label>
+                                <div class="field">
+                                    <input type="text" name="Email" placeholder="example@gmail.com" required="required">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>{% translate "Password" %}</label>
+                                <div class="field">
+                                    <input type="password" name="Password" placeholder="{% translate 'Password' %}" required="required">
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>{% translate "Password Again" %}</label>
+                                <div class="field">
+                                    <input type="password" name="Password2" placeholder="{% translate 'Password' %}" required="required">
+                                </div>
+                            </div>
+                            <button class="ui positive button" type="submit">{% translate "Register" %}</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.message .close')
+        .on('click', function () {
+            $(this)
+                .closest('.message')
+                .transition('fade')
+                ;
+        })
+        ;
+</script>
+
+{% endif %}
+{% endblock %}

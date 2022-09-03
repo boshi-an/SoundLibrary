@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% load App_extras %}
+{% load static %}
+{% load i18n %}
+
+{% block page %}
+<div class="pusher">
+    <div class="ui container">
+        <div class="ui divider"></div>
+        {% include 'util_back.html' %}
+        {% csrf_token %}
+        <h3 class="ui dividing header">{% translate "Recording Information" %}</h3>
+        <div class="ui raised segment">
+            <div class="ui items">
+                {% for show_recording in RecordingList %}
+                <form class="ui form" id="change_form" method="post" enctype="multipart/form-data" action="{% url 'recording_change_commit' id=show_recording.get_id %}">
+                    {% csrf_token %}
+                    <h3 class="ui dividing header">{% translate "Recording Information" %}</h3>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>{% translate "Recording Name" %}</label>
+                            <div class="field">
+                                <input type="text" name="RecordingName" value="{{ show_recording.get_title }}"
+                                    required="required">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label>{% translate "Composer Name" %}</label>
+                            <div class="ui input">
+                                <input list="browsers" name="ComposerName" type="text" autocomplete="off" value="{{ show_recording.get_composer }}">
+                                <datalist id="browsers">
+                                    {% for show_composer in AllComposers %}
+                                    <option value="{{ show_composer.get_name }}"></option>
+                                    {% endfor %}
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label>{% translate "Description" %}</label>
+                        <textarea type="input" name="Description">{{ show_recording.get_description }}</textarea>
+                    </div>
+                    <div class="field">
+                        <label>{% translate "Recording File" %}</label>
+                        {% translate "If you don't want to change the recording file, you can keep here blank." %}
+                        <input type="file" name="File" />
+                    </div>
+                    <button class="ui primary button" type="submit" name="update_button">
+                        {% translate "Submit" %}
+                    </button>
+                    <a class="ui red button" id="coins" name="delete_button">
+                        {% translate "Delete" %}
+                    </a>
+                </form>
+                <div class="ui modal">
+                    <i class="close icon"></i>
+                    <div class="header">
+                        {% translate "Delete Recording" %}
+                    </div>
+                    <div class="content">
+                        <div class="description">
+                            <div class="ui header">{% translate "Please Confirm." %}</div>
+                            <p>{% translate "By clicking on the " %}{% translate "Yep, Delete" %} {% translate " button, this recording will be permanently deleted and CANNOT be recovered." %}</p>
+                            <p>{% translate "If you uploaded the wrong piece, you can edit description or reload file in the recording management page,
+                                it's not necessary to delete the recording." %}</p>
+                            <p>{% translate "Are you sure to delete it?" %}</p>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <div class="ui black deny button">
+                            {% translate "Nope, Go Back" %}
+                        </div>
+                        <button class="ui positive red right labeled icon button">
+                            {% translate "Yep, Delete" %}
+                            <i class="checkmark icon"></i>
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+                <script>
+                    $('.ui.dropdown').dropdown();
+                </script>
+                <script>
+                    $('.ui.modal').modal('setting', {
+                        closable  : false,
+                        onDeny    : function(){
+                        },
+                        onApprove : function() {
+                            var input = document.createElement("input");
+                            input.type = "text";
+                            input.name = "delete_button";
+                            let form = document.getElementById("change_form");
+                            form.appendChild(input);
+                            form.submit();
+                        }
+                    })
+                    $('#coins').click(function(){
+                        $('.ui.modal').modal('show');
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('.message .close')
+        .on('click', function () {
+            $(this)
+                .closest('.message')
+                .transition('fade')
+                ;
+        })
+        ;
+</script>
+{% endblock %}

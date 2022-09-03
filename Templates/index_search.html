@@ -1,0 +1,71 @@
+{% extends "index.html" %}
+
+{% load App_extras %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="ui three doubling stackable link cards">
+    {% for show_item in List %}
+    {% if show_item|get_class == "Recording" %}
+    <a class="ui fluid raised link card" href="{% url 'recording_info' id=show_item.get_id %}">
+        <div class="content">
+            <div class="header">{{ show_item.get_title }}</div>
+            <div class="meta">
+                {% translate "Uploaded by" %}: {{ show_item.get_username }}
+                </br>
+                {% translate "Composer" %} : {{ show_item.get_composer }}
+            </div>
+            <div class="description">
+                {{ show_item.get_description }}
+            </div>
+        </div>
+        <div class="extra content">
+            {% translate "Uploaded at" %} {{ show_item.get_upload_date }}
+        </div>
+    </a>
+    {% elif show_item|get_class == "User" %}
+    <a class="ui fluid raised link card" href="{% url 'user_info' username=show_item.get_username %}">
+        <div class="content">
+            <img class="ui left floated tiny image" src="{% static '/images/avatar2/matthew.png' %}">
+            <div class="header">{{ show_item.get_username }}</div>
+            <div class="meta">
+                {% translate "Last login" %}: {{ show_item.get_last_login}}
+            </div>
+            <div class="description">
+                {{ show_item.get_introduction }}
+            </div>
+        </div>
+        <div class="extra content">
+            <span class="right floated">
+                {% translate "Joined in" %} {{ show_item.get_join_date.date }}
+            </span>
+            <span>
+                <i class="file audio outline icon"></i>
+                {{ show_item.NumRecordings }} {% translate "Recordings" %}
+            </span>
+        </div>
+    </a>
+    {% elif show_item|get_class == "Composer" %}
+    <a class="ui fluid raised link card" href="{% url 'composer_info' id=show_item.get_id %}">
+        <div class="content">
+            <img class="ui left floated tiny image" src="{% static 'images\avatar2\elyse.png' %}">
+            <div class="header">{{ show_item.get_name }}</div>
+            <div class="description">
+                {{ show_item.get_introduction }}
+            </div>
+        </div>
+        <div class="extra content">
+            <span class="right floated">
+                <p>{{ show_item.get_lifetime }}</p>
+            </span>
+            <span>
+                <i class="file audio outline icon"></i>
+                {{ show_item.NumRecordings }} {% translate "Recordings" %}
+            </span>
+        </div>
+    </a>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

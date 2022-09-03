@@ -1,0 +1,408 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-31 21:06+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\App\utils\index.py:53 .\App\utils\login.py:18
+msgid "PKUpiano Sound Library!"
+msgstr "PKUpiano Sound Library!"
+
+#: .\App\utils\user.py:105
+msgid "Congratulations! You can now access the full content of this website."
+msgstr "Congratulations! You can now access the full content of this website."
+
+#: .\App\utils\user.py:107
+msgid "Verification code incorrect!"
+msgstr "Verification code incorrect!"
+
+#: .\App\views.py:223
+msgid "Email is not a PKU email address."
+msgstr "Email is not a PKU email address."
+
+#: .\App\views.py:226
+msgid "We have send you a verification email, please check your inbox."
+msgstr "We have send you a verification email, please check your inbox."
+
+#: .\SoundLib\settings.py:123
+msgid "Simplified Chinese"
+msgstr "Simplified Chinese"
+
+#: .\SoundLib\settings.py:124
+msgid "English"
+msgstr "v"
+
+#: .\Templates\base.html:138
+msgid "PKUPiano Sound Library!"
+msgstr "PKUPiano Sound Library!"
+
+#: .\Templates\base.html:140
+msgid "Need to have a background."
+msgstr "Need to have a background."
+
+#: .\Templates\base.html:151
+msgid "Community"
+msgstr "Community"
+
+#: .\Templates\base.html:154
+msgid "Bilibili Link"
+msgstr "Bilibili Link"
+
+#: .\Templates\base.html:157
+msgid "Wechat（Todo）"
+msgstr "Wechat（Todo）"
+
+#: .\Templates\base.html:162
+msgid "Project"
+msgstr "Project"
+
+#: .\Templates\base.html:165
+msgid "Site GitHub Project"
+msgstr "Site GitHub Project"
+
+#: .\Templates\base.html:168
+msgid "Wechat Server GitHub Project"
+msgstr "Wechat Server GitHub Project"
+
+#: .\Templates\base.html:173
+msgid "ICP Code"
+msgstr "ICP Code"
+
+#: .\Templates\base.html:179
+msgid "Public Security Record"
+msgstr "Public Security Record"
+
+#: .\Templates\base.html:188
+msgid "Help Preserve This Project"
+msgstr "Help Preserve This Project"
+
+#: .\Templates\base.html:189
+msgid "Support for the continued development of PKU piano club."
+msgstr "Support for the continued development of PKU piano club."
+
+#: .\Templates\index.html:16 .\Templates\index.html:20
+msgid "Timeline"
+msgstr "Timeline"
+
+#: .\Templates\index.html:25 .\Templates\index.html:29
+msgid "Members"
+msgstr "Members"
+
+#: .\Templates\index.html:34 .\Templates\index.html:38
+msgid "Composers"
+msgstr "Composers"
+
+#: .\Templates\index.html:43 .\Templates\index.html:47
+msgid "Upload"
+msgstr "Upload"
+
+#: .\Templates\index.html:52 .\Templates\index.html:56
+msgid "About"
+msgstr "About"
+
+#: .\Templates\index.html:66
+msgid "Search"
+msgstr "Search"
+
+#: .\Templates\index_about.html:8
+msgid "This is a website maintained by PKU Piano Club"
+msgstr "This is a website maintained by PKU Piano Club"
+
+#: .\Templates\index_members.html:15 .\Templates\index_search.html:33
+msgid "Last login"
+msgstr "Last login"
+
+#: .\Templates\index_members.html:23 .\Templates\index_search.html:41
+msgid "Joined in"
+msgstr "Joined in"
+
+#: .\Templates\index_members.html:27 .\Templates\index_search.html:45
+msgid "Recordings"
+msgstr "Recordings"
+
+#: .\Templates\index_search.html:15 .\Templates\index_timeline.html:14
+#: .\Templates\recording.html:21
+msgid "Uploaded by"
+msgstr "Uploaded by"
+
+#: .\Templates\index_search.html:17 .\Templates\index_timeline.html:16
+#: .\Templates\recording.html:23
+msgid "Composer"
+msgstr "Composer"
+
+#: .\Templates\index_search.html:24 .\Templates\index_timeline.html:23
+#: .\Templates\recording.html:29
+msgid "Uploaded at"
+msgstr "Uploaded at"
+
+#: .\Templates\index_upload.html:10 .\Templates\recording.html:13
+#: .\Templates\recording_change.html:13 .\Templates\recording_change.html:19
+msgid "Recording Information"
+msgstr "Recording Information"
+
+#: .\Templates\index_upload.html:13 .\Templates\recording_change.html:22
+msgid "Recording Name"
+msgstr "Recording Name"
+
+#: .\Templates\index_upload.html:19 .\Templates\recording_change.html:29
+msgid "Composer Name"
+msgstr "Composer Name"
+
+#: .\Templates\index_upload.html:31 .\Templates\recording_change.html:41
+#: .\Templates\user.html:24
+msgid "Description"
+msgstr "Description"
+
+#: .\Templates\index_upload.html:35 .\Templates\recording_change.html:45
+msgid "Recording File"
+msgstr "Recording File"
+
+#: .\Templates\index_upload.html:40 .\Templates\index_upload.html:44
+#: .\Templates\password_reset.html:21
+#: .\Templates\password_reset_confirm.html:18
+#: .\Templates\recording_change.html:50
+msgid "Submit"
+msgstr "Submit"
+
+#: .\Templates\index_upload.html:46
+msgid "A user can upload recordings if logged in and get email verified."
+msgstr "A user can upload recordings if logged in and get email verified."
+
+#: .\Templates\login.html:10
+msgid "Registration Success!"
+msgstr "Registration Success!"
+
+#: .\Templates\login.html:20 .\Templates\util_back.html:6
+msgid "Back"
+msgstr "Back"
+
+#: .\Templates\login.html:28 .\Templates\user_change.html:19
+msgid "Passwords should be the same!"
+msgstr "Passwords should be the same!"
+
+#: .\Templates\login.html:35 .\Templates\user_change.html:26
+msgid "Your name is conflict with others!"
+msgstr "Your name is conflict with others!"
+
+#: .\Templates\login.html:49 .\Templates\user_change.html:33
+msgid "Registration failed due to some unkonwn reason!"
+msgstr "Registration failed due to some unkonwn reason!"
+
+#: .\Templates\login.html:56
+msgid "Login failed!"
+msgstr "Login failed!"
+
+#: .\Templates\login.html:66 .\Templates\login.html:83
+#: .\Templates\password_reset_complete.html:17
+msgid "Login"
+msgstr "Login"
+
+#: .\Templates\login.html:72 .\Templates\login.html:95
+#: .\Templates\user_change.html:42
+msgid "User Name"
+msgstr "User Name"
+
+#: .\Templates\login.html:78 .\Templates\login.html:107
+#: .\Templates\user_change.html:54
+msgid "Password"
+msgstr "Password"
+
+#: .\Templates\login.html:85
+msgid "Forget?"
+msgstr "Forget?"
+
+#: .\Templates\login.html:89 .\Templates\login.html:118
+msgid "Register"
+msgstr "Register"
+
+#: .\Templates\login.html:101 .\Templates\user_change.html:48
+msgid "Email"
+msgstr "Email"
+
+#: .\Templates\login.html:113 .\Templates\user_change.html:60
+msgid "Password Again"
+msgstr "Password Again"
+
+#: .\Templates\password_reset.html:11
+msgid "Password Reset"
+msgstr "Password Reset"
+
+#: .\Templates\password_reset.html:13
+msgid "Forgotten your password?"
+msgstr "Forgotten your password?"
+
+#: .\Templates\password_reset.html:16
+msgid ""
+"Enter your email address below, and we'll email instructions for setting a "
+"new one."
+msgstr ""
+"Enter your email address below, and we'll email instructions for setting a "
+"new one."
+
+#: .\Templates\password_reset_complete.html:10
+msgid "Password reset complete"
+msgstr ""
+
+#: .\Templates\password_reset_complete.html:12
+msgid "Your password has been set. You may go ahead and log in now."
+msgstr "Your password has been set. You may go ahead and log in now."
+
+#: .\Templates\password_reset_confirm.html:11
+msgid "Enter New Password"
+msgstr "Enter New Password"
+
+#: .\Templates\password_reset_confirm.html:13
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+
+#: .\Templates\password_reset_done.html:11
+msgid "Password Reset Sent"
+msgstr "Password Reset Sent"
+
+#: .\Templates\password_reset_done.html:13
+msgid ""
+"We've emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+msgstr ""
+"We've emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+
+#: .\Templates\password_reset_done.html:16
+msgid ""
+"If you don't receive an email, please make sure you've entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+"If you don't receive an email, please make sure you've entered the address "
+"you registered with, and check your spam folder."
+
+#: .\Templates\recording.html:32
+msgid "Your browser does not support the audio element."
+msgstr "Your browser does not support the audio element."
+
+#: .\Templates\recording.html:39
+#, fuzzy
+#| msgid "Change Info"
+msgid "Change Recording Info"
+msgstr "Change Info"
+
+#: .\Templates\recording_change.html:46
+msgid ""
+"If you don't want to change the recording file, you can keep here blank."
+msgstr ""
+"If you don't want to change the recording file, you can keep here blank."
+
+#: .\Templates\recording_change.html:53
+msgid "Delete"
+msgstr "Delete"
+
+#: .\Templates\recording_change.html:59
+msgid "Delete Recording"
+msgstr "Delete Recording"
+
+#: .\Templates\recording_change.html:63 .\Templates\user_change.html:89
+msgid "Please Confirm."
+msgstr "Please Confirm."
+
+#: .\Templates\recording_change.html:64 .\Templates\user_change.html:90
+msgid "By clicking on the "
+msgstr "By clicking on the "
+
+#: .\Templates\recording_change.html:64 .\Templates\recording_change.html:75
+#: .\Templates\user_change.html:90 .\Templates\user_change.html:101
+msgid "Yep, Delete"
+msgstr "Yep, Delete"
+
+#: .\Templates\recording_change.html:64
+msgid ""
+" button, this recording will be permanently deleted and CANNOT be recovered."
+msgstr ""
+" button, this recording will be permanently deleted and CANNOT be recovered."
+
+#: .\Templates\recording_change.html:67 .\Templates\user_change.html:93
+msgid "Are you sure to delete it?"
+msgstr "Are you sure to delete it?"
+
+#: .\Templates\recording_change.html:72 .\Templates\user_change.html:98
+msgid "Nope, Go Back"
+msgstr "Nope, Go Back"
+
+#: .\Templates\user.html:13 .\Templates\user_change.html:13
+msgid "User Information"
+msgstr "User Information"
+
+#: .\Templates\user.html:30
+msgid "Joined on"
+msgstr "Joined on"
+
+#: .\Templates\user.html:35
+#, fuzzy
+#| msgid "Change Info"
+msgid "Change User Info"
+msgstr "Change Info"
+
+#: .\Templates\user.html:40
+msgid "Verify Email"
+msgstr "Verify Email"
+
+#: .\Templates\user.html:46 .\Templates\user_change.html:77
+msgid "Logout"
+msgstr "Logout"
+
+#: .\Templates\user_change.html:67
+msgid "Introduction"
+msgstr "Introduction"
+
+#: .\Templates\user_change.html:73
+msgid "Update"
+msgstr "Update"
+
+#: .\Templates\user_change.html:80 .\Templates\user_change.html:85
+msgid "Delete User"
+msgstr "Delete User"
+
+#: .\Templates\user_change.html:90
+msgid ""
+" button, current user will be permanently deleted and CANNOT be recovered."
+msgstr ""
+" button, current user will be permanently deleted and CANNOT be recovered."
+
+#: .\Templates\verification_fail.html:14
+msgid "Verification Failed"
+msgstr "Verification Failed"
+
+#: .\Templates\verification_needed.html:14
+msgid "Operation Failed"
+msgstr "Operation Failed"
+
+#: .\Templates\verification_needed.html:17
+msgid "You need to first authenticate your email."
+msgstr "You need to first authenticate your email."
+
+#: .\Templates\verification_pending.html:14
+msgid "Pending Verification"
+msgstr "Pending Verification"
+
+#: .\Templates\verification_success.html:14
+msgid "Home"
+msgstr "Home"
+
+#: .\Templates\verification_success.html:19
+msgid "Verification Successed"
+msgstr "Verification Successed"

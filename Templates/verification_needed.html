@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load App_extras %}
+{% load static %}
+{% load i18n %}
+
+{% block page %}
+<div class="pusher">
+    <div class="ui container">
+        <div class="ui divider"></div>
+        {% include 'util_back.html' %}
+        {% csrf_token %}
+        <h1>
+            {% translate "Operation Failed" %}
+        </h1>
+        <p>
+            {% translate "You need to first authenticate your email." %}
+        </p>
+    </div>
+</div>
+
+{% endblock %}

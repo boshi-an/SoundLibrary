@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% load App_extras %}
+{% load static %}
+{% load i18n %}
+
+{% block page %}
+<div class="pusher">
+    <div class="ui container">
+        <div class="ui divider"></div>
+        {% include 'util_back.html' %}
+        {% csrf_token %}
+        <h3 class="ui dividing header">{% translate "Composer Information" %}</h3>
+        <!-- When error occurs -->
+        {% if MultipleNames %}
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <div class="header">
+                {% translate "The new name is conflict with other composes!" %}
+            </div>
+        </div>
+        {% elif ChangeFailed %}
+        <div class="ui error message">
+            <i class="close icon"></i>
+            <div class="header">
+                {% translate "Change failed due to some unkonwn reason!" %}
+            </div>
+        </div>
+        {% endif %}
+        <form class="ui form" id="change_form" method="post" enctype="multipart/form-data" action="{% url 'composer_change_commit' id=Composer.get_id %}">
+            {% csrf_token %}
+            <div class="field">
+                <div class="field">
+                    <label>{% translate "Composer Name" %}</label>
+                    <div class="field">
+                        <input type="text" name="Name" value="{{ Composer.get_name }}" required="required">
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>{% translate "Introduction" %}</label>
+                <div class="field">
+                    <textarea type="input" name="Introduction" required="required">{{ Composer.get_introduction }}</textarea>
+                </div>
+            </div>
+            <button class="ui positive button" type="submit">{% translate "Update" %}</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    $('.message .close')
+        .on('click', function () {
+            $(this)
+                .closest('.message')
+                .transition('fade')
+                ;
+        })
+        ;
+</script>
+{% endblock %}
